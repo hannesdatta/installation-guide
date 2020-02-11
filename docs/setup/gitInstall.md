@@ -83,101 +83,85 @@ Ensure that you have a version greater than `2.15.0` installed.
 
 ## A short instruction for Git
 
-1. Configure
+### Before we start
 
-   In order to use Github locally, you can configure your user name and email of your Github account in local PC. In your terminal, you can type the following command to configure.
+- Configure
+
+In order to use Github locally, you can configure your user name and email of your Github account in local PC. In your terminal, you can type the following command to configure.
+
+```bash
+# set the author name for your commits
+git config --global user.name "[name]"
+
+# set the author email for your commits
+git config --global user.email "[email address]" 
+```
+
+When you finish the configuration, you can type `git config --list` to check the user information.
+
+### A typical workflow
+
+1. Create a repository on Github
+
+   To start, you need to create a repository once. You can create a repository on Github and then clone to your local PC. Or you can fork other's repository and then clone to your local PC.
+
+   
+
+   `New repository` or `fork other's repository` ->  copy `git@github.com:username/newrepository.git` -> go to the folder that you want to put the repository locally `cd localfolder` -> 
 
    ```bash
-   # set the author name for your commits
-   git config --global user.name "[name]"
-   
-   # set the author email for your commits
-   git config --global user.email "[email address]" 
-   
-   # enables colorization for command line output 
-   git config --global color.ui auto
-   ```
-
-2. Create repositories
-
-   To start, you need to create a new repository once.You can create a local repository and then push to Github, or clone an existing repository from Github to your local PC.
-
-   ```bash
-   # create a git repository from a locally existing directory
-   git init
-   
    # clone an existing repository from Github to local PC
-   git clone "[url]"
+   git clone git@github.com:username/newrepository.git`
    ```
 
-3. Branches
+2. Commit local change
 
-   Branches are key tools for version control. Everyone can make changes to his own working branch, and merge their changes to a master branch. You can use `git status` to check your working branch.
+   Each time when you change you programs, you can record snapshots permanently in version history, so that you can check every version in the future in case. **Commit Frequently!**
 
-   ``` bash
-   # create a branch [branch-name]
-   git branch [branch-name]
-   
-   # switch to s specific branch [branch-name]
-   git checkout [branch-name]
-   
-   # merge a specific branch [branch] to the working branch
-   git merge [branch]
-   
-   # delete a specific branch [branch-name]
-   git branch -d [branch-name]
-   ```
-
-4. Make changes
-
-   Everytime when you make changes to your project, you can use the following command to browse and inspect changes.
-
-   ``` bash
-   # list all version histories of current branch
-   git log
-   
-   # present content differences between two branches [first-branch] vs [second-branch]
-   git diff [first-branch]...[second-branch]
-   
-   # snapshot the file in preparation for versioning
-   git add [file]
-   
+   ```bash
    # record file snapshots permanently in version history
    git commit -m "[descriptive message]"
    ```
 
-5. Sync
+3. Push to Github
 
-   Everyone can sync their local changes with the remote repository on Github(usually the online master branch). You can also get changes to your local repository from the remote repository.
+   Since you are cooperating with coauthors, you can share your changes by uploading all local branch commits to GitHub. **Push Frequently!** But less frequent than `Commit`.
 
-   ``` bash
-   # download all history from the remote tracking branches
-   git fetch
-   
-   # combine remote tracking branch into current local branch
-   git merge
-   
+   ```bash
    # upload all local branch commits to GitHub
    git push
-   
-   # update your local working branch with all new commits from the remote branch on GitHub
-   # `git pull` is a combination of `git fetch` and `git merge`
-   git pull
    ```
 
-   ![Git](git.png)
+### If you prefer graphical UI
 
-6. Reset
+The typicla workflow can be realized by graphical *Github Desktop*. [Download GIthub Desktop](https://desktop.github.com).
 
-   You may want to reset your changes and replace them with historical version.
+- Log in your Github account
 
-   ``` bash
-   # undo all commits after [commit], preserving changes locally
-   git reset [commit]
-   
-   # drop all history and changes back to the specified commit
-   git reset --hard [commit]
-   ```
+- `file`->`clone repository`->choose `repository` and `local path`, then `clone`
 
-   
+  ![](clonedesk.png)
 
+- `commit` with a description message on the down left, then `push` on the up right.
+
+  ![](pushdesk.png)
+
+### More about Git
+
+1. Branches
+
+Branches are key tools for version control. Everyone can make changes to his own working branch, and merge their changes to a master branch. You can use `git status` to check your working branch.
+
+``` bash
+  # create a branch [branch-name]
+  git branch [branch-name]
+
+  # switch to s specific branch [branch-name]
+  git checkout [branch-name]
+
+  # merge a specific branch [branch] to the working branch
+  git merge [branch]
+
+  # delete a specific branch [branch-name]
+  git branch -d [branch-name]
+```
