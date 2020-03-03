@@ -101,6 +101,8 @@ When you finish the configuration, you can type `git config --list` to check the
 
 ### A typical workflow
 
+![git-cycle](git-cycle.png)
+
 1. Create a repository on Github
 
    To start, you need to create a repository once. You can create a repository on Github and then clone to your local PC. Or you can fork other's repository and then clone to your local PC.
@@ -111,7 +113,7 @@ When you finish the configuration, you can type `git config --list` to check the
 
    ```bash
    # clone an existing repository from Github to local PC
-   git clone git@github.com:username/newrepository.git`
+   git clone git@github.com:username/newrepository.git
    ```
 
 2. Commit local change
@@ -122,6 +124,9 @@ When you finish the configuration, you can type `git config --list` to check the
    # record file snapshots permanently in version history
    git commit -m "[descriptive message]"
    ```
+
+   - You can use `git add filename`  to store your changed file to the stage first, so that git can save every change for further management.
+   - You can use `git status` to check the status of all your changes before `git commit`.
 
 3. Push to Github
 
@@ -146,11 +151,11 @@ The typicla workflow can be realized by graphical *Github Desktop*. [Download GI
 
   ![](pushdesk.png)
 
-### More about Git
 
-1. Branches
 
-Branches are key tools for version control. Everyone can make changes to his own working branch, and merge their changes to a master branch. You can use `git status` to check your working branch.
+### Branches for Cooperation
+
+Branches are key tools for version control. Every cooperator can make changes to his own working branch, and merge their changes to a master branch. You can use `git status` to check your working branch.
 
 ``` bash
   # create a branch [branch-name]
