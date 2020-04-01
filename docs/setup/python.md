@@ -35,13 +35,13 @@ You should see the following information returned:
 ###   Windows users:
 
 ```bash
-Python 3.6.5 :: Anaconda, Inc.
+Python 3.x.x :: Anaconda, Inc.
 ```
 
 ###  Mac & Linux/Ubuntu users:
 
 ```bash
-Python 3.6.2 :: Anaconda custom (64-bit)
+Python 3.x.x :: Anaconda custom (64-bit)
 ```
 
 !!! tip "Python 2 versus Python 3"
@@ -50,5 +50,5 @@ Python 3.6.2 :: Anaconda custom (64-bit)
 	you might have seen `Python 2.x.x` above. In that case try typing
 
     ```python3 --version```
-
+    
     instead. Now you should see a message like the one above and are good to go for the course.

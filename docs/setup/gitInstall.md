@@ -107,9 +107,7 @@ When you finish the configuration, you can type `git config --list` to check the
 
    To start, you need to create a repository once. You can create a repository on Github and then clone to your local PC. Or you can fork other's repository and then clone to your local PC.
 
-   
-
-   `New repository` or `fork other's repository` ->  copy `git@github.com:username/newrepository.git` -> go to the folder that you want to put the repository locally `cd localfolder` -> 
+   `New repository` or `fork other's repository` ->  copy `git@github.com:username/newrepository.git` -> go to the folder that you want to put the repository locally `cd localfolder` ->
 
    ```bash
    # clone an existing repository from Github to local PC

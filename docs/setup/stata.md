@@ -39,20 +39,18 @@ For you to be able to use Stata from the command prompt, follow the steps below.
 
 ### Mac users
 
-For you to be able to use Stata from the command line, you have to add Stata to your bash file. A tutorial follows.
+For you to be able to use Stata from the command line, you have to add Stata to your environmental variables. A tutorial follows.	
 
-!!! danger "Making Stata available via the PATH settings on Mac"
+!!! danger "Making Stata available via the PATH settings on Mac" 
 
-```
-Step 1: add Stata to bash file
-- Open `Terminal`.
-- Type `echo "export PATH=$PATH: Your Stata Path" >> ~/.bash_profile`. For example,
-		`export PATH=$PATH: /Applications/Stata/StataMP.app/Contents/MacOS/  >> ~/.bash_profile`
-
-Step 2: Evaluate bash changes
-- Type `echo $PATH` to check whether Stata is added to your path.
-```
-
+	- open Terminal
+	- type `vi ~/.bash_profile`
+	- add Stata to the environmental varibles
+	  	- type `i` to input mode of vim
+	  	- add `export STATA_BIN=/Applications/Stata/StataMP.app/Contents/MacOS/stataMP`. You may need to replace stataMP to stataSE or so, which depends on which Stata you install on Mac.
+	  	- press `esc` and type `:w` to save the change
+	  	- close the ternimal and reopen one terminal. Then type `source ~/.bash_profile` to bring the new .bash_profile into effect.
+	- type `$STATA_BIN -v` to check availability. Remember to type the `$` before `STATA_BIN`. 
 
 
 <!--- Linux users not available yet
@@ -65,7 +63,7 @@ To verify that Stata has been correctly installed and configured via your PATH s
 open a **new** terminal interface and enter:
 
 ```bash
-StataSE-64.exe
+$STATA_BIN -v
 ```
 
-followed by hitting the `Return` key. Stata will now start.
+followed by hitting the `Return` key. You can check the Stata version.
