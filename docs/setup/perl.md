@@ -1,10 +1,9 @@
-# Installing Stata
+# Installing Perl
 
-Stata is a proprietary statistical software frequently used by scientific users.
+Perl is a proprietary statistical software frequently used by scientific users.
 First check with your local IT support whether your institution has Stata licenses
 available.
 
-If not, you can purchase a copy on [Stata's website](https://www.stata.com/) and follow the [installation guide](https://www.stata.com/install-guide/).
 
 ## Making Stata Available on the Command Prompt
 
@@ -44,14 +43,13 @@ For you to be able to use Stata from the command line, you have to add Stata to 
 !!! danger "Making Stata available via the PATH settings on Mac"
 
 ```
-- open Terminal
-- type `vi ~/.bash_profile`
-- add Stata so that it can be called in the command line
-	- type `i` to input mode of vim
-	- add `export STATA_BIN=/Applications/Stata/StataMP.app/Contents/MacOS/stataMP`. You may need to replace stataMP to stataSE or so, which depends on which Stata you install on Mac.
-	- press `esc` and type `:w` to save the change
-	- close the ternimal and reopen one terminal. Then type `source ~/.bash_profile` to bring the new .bash_profile into effect.
-- type `$STATA_BIN -v` to check availability. Remember to type the `$` before `STATA_BIN`. 
+Step 1: add Stata to bash file
+- Open `Terminal`.
+- Type `echo "export PATH=$PATH: Your Stata Path" >> ~/.bash_profile`. For example,
+		`export PATH=$PATH: /Applications/Stata/StataMP.app/Contents/MacOS/  >> ~/.bash_profile`
+
+Step 2: Evaluate bash changes
+- Type `echo $PATH` to check whether Stata is added to your path.
 ```
 
 
