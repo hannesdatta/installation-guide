@@ -23,10 +23,11 @@ For you to be able to use Stata from the command prompt, follow the steps below.
     - Go to "Properties" and select the tab "Advanced System settings".
     - Choose "Environment Variables" and select `Path` from the list of system variables.
     - Choose `Edit`.
+    	- Environment variable name: STATA_BIN
     	- **Windows 7 and 8 machines:**
     		If you chose the default installation directory, copy and paste the following string without spaces at the start or end:
     
-            `;c:\Program Files (x86)\Stata15`
+            `c:\Program Files (x86)\Stata15`
     
     	  Using a different Stata version? Change the version number then in the path above.
     

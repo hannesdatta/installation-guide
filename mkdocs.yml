@@ -10,6 +10,7 @@ nav:
       - Perl: setup/perl.md
       - Git: setup/gitInstall.md
       - Text Editor: setup/textEditor.md
+      - Lyx: setup/lyx.md
       - Python: setup/python.md
       - Python Extras: setup/python-more.md
       - Build Tools/Make:
