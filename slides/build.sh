@@ -11,8 +11,19 @@ declare -a OutputNames=("01_coursesetup" "02_workflows" "03_exercises" )
 # Iterate the string array using for loop
 for i in "${!FileNames[@]}"; do
    echo ${FileNames[i]}
+#theme=white-tsh
 
-   pandoc -t revealjs -s -o ${OutputNames[i]}.html ${FileNames[i]}.md -V revealjs-url=./reveal-old -V theme=white-tsh
+   pandoc -t revealjs -s -o ${OutputNames[i]}.html ${FileNames[i]}.md -V revealjs-url=./reveal-old -V theme=robot-lung-tsh
+
+   sed 's/<div class="slides">$/\ <div class="slides">\
+   <div class="line top"><\/div> \
+   <div class="line bottom"><\/div> \
+    <div class="line left"><\/div> \
+    <div class="line right"><\/div> \
+    \ /' ${OutputNames[i]}.html > ${OutputNames[i]}_theme.html
+
+
+#   #robot-lung
    sed '/::: notes/,/:::/d' ${FileNames[i]}.md > ${FileNames[i]}-nonotes.md
    sed '/\. \. \./d' ${FileNames[i]}-nonotes.md > ${FileNames[i]}-nonotes2.md
    pandoc ${FileNames[i]}-nonotes2.md --pdf-engine=xelatex -o "gen/${OutputNames[i]}.pdf"
