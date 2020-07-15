@@ -12,7 +12,7 @@ Typically, you would like to
 
 ## Main Project Documentation
 
-You should place a main project documentation in the root directory of your project (`\my_project`),
+You should place a main project documentation in the root directory of your project (`/my_project`),
 and call it `readme.txt`. Keep the document *brief and simple*, but include at
 least the following information:
 
@@ -68,29 +68,29 @@ http://www.tilburgsciencehub.com/setup for
   Put GnuMake and R to path so that you can run it
   from anywhere on your system. See http://www.tilburgsciencehub.com/
 
-- Obtain raw data files and put them into \data\
+- Obtain raw data files and put them into /data/
 
 2) Directory structure
 
 The project pipeline consists of the following stages:
 
-\src\collect                Code required to collect/download raw data
-\src\data-preparation       Data preparation
-\src\analysis               Data analysis
-\src\paper                  Stores literature reference, paper, and slides
+/src/collect                Code required to collect/download raw data
+/src/data-preparation       Data preparation
+/src/analysis               Data analysis
+/src/paper                  Stores literature reference, paper, and slides
 
 Each directory has a makefile, with running descriptions
 for each stage of the pipeline.
 
-For each pipeline stage, the \gen directory contains
-files generated on the basis of the \data and
-source code stored in \src.
+For each pipeline stage, the /gen directory contains
+files generated on the basis of the /data and
+source code stored in /src.
 
 Each directory contains subdirectories,
-	\input (for input files)
-	\output (for final output files)
-	\temp (for any temporary files)
-	\audit (for any auditing files)
+	/input (for input files)
+	/output (for final output files)
+	/temp (for any temporary files)
+	/audit (for any auditing files)
 
 3) How to run the project
 

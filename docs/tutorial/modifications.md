@@ -8,7 +8,7 @@ This time, you can directly start working on the practice questions below. Also 
 
     1) Please open `textmining.py`, and also provide the word count as an additional column. Tip: use `len(blob.words)` to obtain the word count of the `blob` variable.
 
-    2) Let's now swap the name of the JSON file name to `fortnite_event_1.json` (in parse.py). Re-run the workflow and compare the final output in `\gen\analysis\output`.
+    2) Let's now swap the name of the JSON file name to `fortnite_event_1.json` (in parse.py). Re-run the workflow and compare the final output in `/gen/analysis/output`.
 
     !!! tip ""Branching""
         Working with reproducible workflows enables you to easily compare the results of one workflow with those of another (modified) one. Think about the question above: *comparing* the results of our results on `fortnite_allevent.json` with those obtained on `fortnite_event_1.json`.
@@ -19,7 +19,7 @@ This time, you can directly start working on the practice questions below. Also 
           - The more "clumsy" way of going about is to *work in a copy of your entire project directory* to see what your modifications will do.
 
             - Yes, you've heard correctly: just copy-paste your entire project infrastructure and then do the modifications there and run `make`.
-            - You now have two main directories on your system and you can directly compare the output of the two `analysis.html` files in `my_project\gen\analysis\output` and `my_project - copy\gen\analysis\output\`.
+            - You now have two main directories on your system and you can directly compare the output of the two `analysis.html` files in `my_project/gen/analysis/output` and `my_project - copy/gen/analysis/output/`.
 
     3) Last, try to replace the download URL in `download.py` with a different raw data set, available at
     `"https://uvt-public.s3.eu-central-1.amazonaws.com/data/trump_disinfectant.zip"`, and run the entire workflow again. Remember to adjust subsequent scripts!!!
