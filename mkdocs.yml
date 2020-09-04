@@ -8,52 +8,10 @@ site_author: Hannes Datta, Tobias J. Klein
 
 nav:
 - Home: index.md
-- Project Setup and Workflow Management:
-  - Getting Started: workflow/index.md
-  - Pipelines and Project Components: workflow/pipeline.md
-  - Data Management and Directory Structure: workflow/directories.md
-  - Automating your Pipeline: workflow/automation.md
-  - Documenting Code and Pipeline: workflow/documenting-code.md
-  - Documenting Datasets: workflow/documenting-data.md
-  - Versioning using Git/GitHub: workflow/versioning.md
-  - Collaborating using GitHub: workflow/collaboration.md
-    #- Overview:
-    #- Workflow in make: workflow/automation_workflow.md
-  #- Versioning: workflow/versioning.md
-  #- Data storage: workflow/data.md
-  #- Documentation: workflow/doc.md
-  #- Housekeeping: workflow/housekeeping.md
-  #- Portability: workflow/portability.md
-  - Checklist to Audit your Project: workflow/checklist.md
-- Software Setup:
-  - Installation Guide Overview: setup/index.md
-  #- Terminology: setup/terminology.md
-  #- Command Line Tools: setup/commandLine.md
-  - R: setup/r.md
-  - Stata: setup/stata.md
-  - Git: setup/gitInstall.md
-  - Text Editor: setup/textEditor.md
-#  - Perl: setup/perl.md
-  - Python: setup/python.md
-  - Python Packages: setup/python-packages.md
-  - Build Tools/Make: setup/make.md
-    # - Automation with Waf: setup/waf.md
-    #- Automation with Snakemake: setup/snakemake.md
-  - Webscraping: setup/webscraping_drivers.md
-  - Teamviewer: setup/teamviewer.md
-  - LaTeX: setup/latex.md
-  - Add. Programming: setup/otherProgLang.md
-#  - Pandoc: setup/pandoc.md
-  # - Matlab: setup/matlab.md
-  # - Path Settings: setup/path-setting.md
-#- Manuals:
-#  - How to write good code:
-#  - Style instructions for papers:
-#  - How to collaborate using Git @Hulai
-#  -
-- Project Templates and Tutorials:
+- Tour: about.md
+- Examples:
     - Overview: examples/index.md
-    - Tutorial:
+    - Basic Computational Setup Tutorial:
         - Getting Started: tutorial/index.md
         - Verify Software Setup: tutorial/verify.md
         - Download the Template: tutorial/clone.md
@@ -63,13 +21,78 @@ nav:
         - More Modifications: tutorial/modifications.md
         - Extending the Analysis: tutorial/analysis.md
         - Finished & Looking Ahead: tutorial/finish.md
-- Tips and Manuals:
-    - Learning R: tips/learn_R.md
-    - Learning Python and Julia: tips/quantecon.md
-    - Writing an Academic Paper: tips/paper.md
-    - Writing Good Code: tips/coding.md
-    - Setting up a file exchange: tips/fileexchanges.md
-    - Links to other initatives: tips/links.md
+- Building Blocks:
+  - Overview: workflow/index.md
+  - Work Environment Setup:
+    - Infrastructure Choice: index.md
+    - Software Installation:
+      - Installation Guide Overview: setup/index.md
+      #- Terminology: setup/terminology.md
+      #- Command Line Tools: setup/commandLine.md
+      - R: setup/r.md
+      - Stata: setup/stata.md
+      - Git: setup/gitInstall.md
+      - Text Editor: setup/textEditor.md
+    #  - Perl: setup/perl.md
+      - Python: setup/python.md
+      - Python Packages: setup/python-packages.md
+      - Build Tools/Make: setup/make.md
+        # - Automation with Waf: setup/waf.md
+        #- Automation with Snakemake: setup/snakemake.md
+      - Webscraping: setup/webscraping_drivers.md
+      - Teamviewer: setup/teamviewer.md
+      - LaTeX: setup/latex.md
+      - Add. Programming: setup/otherProgLang.md
+  - Organize your Project:
+    - Data Management and Directory Structure: workflow/directories.md
+    - Mirror your Code to GitHub: workflow/versioning.md
+    - Remote raw data setup: index.md
+    - Pipelines and Project Components: workflow/pipeline.md
+    - Checklist to Audit your Project: workflow/checklist.md
+  - Document your Project:
+    - Documenting Code and Pipeline: workflow/documenting-code.md
+    - Documenting Data: workflow/documenting-data.md
+  - Collect Data:
+    - Web Scraping: index.md
+    - API: index.md
+  - Store Data:
+    - Project Directory Structure: workflow/directories.md
+    - Handling Data: index.md
+    - Anonymize Data: index.md
+  - Automate your Work:
+    - Makefile and Pipelines: workflow/automation.md
+  - Collaborate:
+    - Collaborating using GitHub: workflow/collaboration.md
+  - Share your Work:
+    - Write your Paper: tips/paper.md
+    - Manage your References: index.md
+    - Wrap code in Packages: index.md
+    - Deploy Code: index.md
+    - Interactive Dashboards: index.md
+    - Static Websites: index.md
+    - Video-based: index.md
+    #- Overview:
+    #- Workflow in make: workflow/automation_workflow.md
+  #- Versioning: workflow/versioning.md
+  #- Data storage: workflow/data.md
+  #- Documentation: workflow/doc.md
+  #- Housekeeping: workflow/housekeeping.md
+  #- Portability: workflow/portability.md
+#  - Pandoc: setup/pandoc.md
+  # - Matlab: setup/matlab.md
+  # - Path Settings: setup/path-setting.md
+#- Manuals:
+#  - How to write good code:
+#  - Style instructions for papers:
+#  - How to collaborate using Git @Hulai
+#  -
+  - Tips and Manuals:
+      - Learning R: tips/learn_R.md
+      - Learning Python and Julia: tips/quantecon.md
+      - Writing an Academic Paper: tips/paper.md
+      - Writing Good Code: tips/coding.md
+      - Setting up a file exchange: tips/fileexchanges.md
+      - Links to other initatives: tips/links.md
 - About: about.md
 #- Acknowledgements: acknowledgement.md
 
@@ -77,7 +100,7 @@ theme:
   name: 'material'
   palette:
     #primary: 'Blue Grey' # default: indigo, other colors see https://squidfunk.github.io/mkdocs-material/getting-started/
-    primary: 'indigo' # default: indigo, other colors see https://squidfunk.github.io/mkdocs-material/getting-started/
+    primary: 'red' # default: indigo, other colors see https://squidfunk.github.io/mkdocs-material/getting-started/
     accent: 'indigo'
 
 markdown_extensions:
