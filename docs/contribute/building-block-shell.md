@@ -1,59 +1,39 @@
-<!-- This is a template. Please update the content while keeping this structure.
-We provide examples in the comments below. Make sure to read our contribution
-guide to learn how to submit your content to Tilburg Science Hub. -->
+<!-- This is a template. Please replace the content while keeping this structure.
+Make sure to read our contribution guide to learn how to submit your content to Tilburg Science Hub. -->
 
-# Goal of the Building Block
+# Title <!-- Goal of the Building Block -->
 
 Provide a brief overview of the issue to solve, or describe why this is a best practice.
 
 Add any special requirements or attach a dummy data set if needed.
 
 
-## Code
-<!-- Provide your code in all the relevant languages and/or operating systems. -->
+## Code <!-- Provide your code in all the relevant languages and/or operating systems. -->
 
 ```python
-# program to check if a number is prime or not
+# program to print Hello world
 
-num = 333
+print("Hello world")
+```
 
-# prime numbers are greater than 1
-if num > 1:
-   # check for factors
-   for i in range(2,num):
-       if (num % i) == 0:
-           print(num,"is not a prime number.")
-           print(i,"times",num//i,"is",num)
-           break
-   else:
-       print(num,"is a prime number.")
-
-# if num is less than or equal to 1, it is not prime
-else:
-   print(num,"is not a prime number.")
+```R
+cat("Hello world\n") # Use in-line comments to explain your code
 ```
 
 
 ## Examples
 
-Provide further examples to support the solution.
+Provide examples to support the solution.
 
+### Example 1
 
-## Background
+!!! tip "Useful tip"
 
-### Subheader 1
+    You can use special formatting options to highlight some paragraphs in your article.
 
-Explain when and why this problem usually occurs.
+### Example 2
 
-- Case 1
-
-- Case 2
-
-Clarify why it's important to fix the problem.
-
-### Subheader 2 (Under the hood)
-
-Demonstrate why the proposed solution is the best approach.
+Provide examples in different programming languages and/or operating systems.
 
 
 ## Advanced use cases - "See also"
@@ -61,6 +41,7 @@ Demonstrate why the proposed solution is the best approach.
 Illustrate advanced use cases and explain how to bring this to the next level.
 
 Provide useful resources and link to "see also" articles.
+
 
 ## Keywords
 
