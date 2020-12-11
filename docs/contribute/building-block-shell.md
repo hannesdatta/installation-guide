@@ -2,13 +2,6 @@
 We provide examples in the comments below. Make sure to read our contribution
 guide to learn how to submit your content to Tilburg Science Hub. -->
 
-## Keywords
-
-Please provide up to 10 keywords for this Building Block.
-Metadata should provide information on the role and usage of this Building Block.
-<!-- For example: ‘devising and organizing the project’,
-‘data collection’, ‘data analysis’ and ‘article writing’. -->
-
 # Goal of the Building Block
 
 Provide a brief overview of the issue to solve, or describe why this is a best practice.
@@ -16,7 +9,7 @@ Provide a brief overview of the issue to solve, or describe why this is a best p
 Add any special requirements or attach a dummy data set if needed.
 
 
-## Code Snippet
+## Code
 <!-- Provide your code in all the relevant languages and/or operating systems. -->
 
 ```python
@@ -39,11 +32,6 @@ if num > 1:
 else:
    print(num,"is not a prime number.")
 ```
-
-
-## Using the code
-
-Explain the few most basic applications and unravel the solution step by step.
 
 
 ## Examples
@@ -73,3 +61,10 @@ Demonstrate why the proposed solution is the best approach.
 Illustrate advanced use cases and explain how to bring this to the next level.
 
 Provide useful resources and link to "see also" articles.
+
+## Keywords
+
+Please provide up to 10 keywords for this Building Block.
+Metadata should provide information on the role and usage of this Building Block.
+<!-- For example: ‘devising and organizing the project’,
+‘data collection’, ‘data analysis’ and ‘article writing’. -->
