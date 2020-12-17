@@ -1,5 +1,5 @@
 <p align="right">
-  <img height="75" src="tilburgsciencehub.png">
+  <img src="tilburgsciencehub.png" style="height:75px">
 </p>
 
 # Welcome to Tilburg Science Hub!
