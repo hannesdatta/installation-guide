@@ -2,7 +2,7 @@
 
 We're glad for your interest in contributing to our project. Tilburg Science Hub is open-source, and as such, **anyone** can contribute! The process is really simple.
 
-When writing for Tilburg Science Hub, please follow our [communication style guideline](). By contributing, you agree that we may redistribute your work under [our license](README.md#License). In exchange, we will address your issues and/or assess your change proposal as promptly as we can, and help you become a member of our community. Everyone involved agrees to abide by our [code of conduct](CONDUCT.md).
+When writing for Tilburg Science Hub, please follow our [communication style guideline](../style-guideline.md). By contributing, you agree that we may redistribute your work under [our license](../about.md#license). In exchange, we will address your issues and/or assess your change proposal as promptly as we can, and help you become a member of our community. Everyone involved agrees to abide by our [code of conduct](#contributor-code-of-conduct).
 
 ## How our content is organized
 
@@ -68,3 +68,17 @@ Don't know how to do this? You can follow a great tutorial about [contributing o
 We are currently looking for contributions. The topics we are most interested in are exhibited in [our content roadmap]().
 
 Can't find a topic? Please, submit your content anyway and we'll be happy to evaluate whether it fits our schedule.
+
+# Contributor Code of Conduct
+
+As contributors and maintainers of this project, we pledge to respect all people who contribute through reporting issues, posting feature requests, updating documentation, submitting pull requests or patches, and other activities.
+
+We are committed to making participation in this project a harassment-free experience for everyone, regardless of level of experience, gender, gender identity and expression, sexual orientation, disability, personal appearance, body size, race, ethnicity, age, or religion.
+
+Examples of unacceptable behavior by participants include the use of sexual language or imagery, derogatory comments or personal attacks, trolling, public or private harassment, insults, or other unprofessional conduct.
+
+Project maintainers have the right and responsibility to remove, edit, or reject comments, commits, code, wiki edits, issues, and other contributions that are not aligned to this Code of Conduct. Project maintainers who do not follow the Code of Conduct may be removed from the project team.
+
+Instances of abusive, harassing, or otherwise unacceptable behavior may be reported by opening an issue or contacting one or more of the project maintainers.
+
+This Code of Conduct is adapted from the Contributor Covenant (http://contributor-covenant.org), version 1.0.0, available at http://contributor-covenant.org/version/1/0/0/

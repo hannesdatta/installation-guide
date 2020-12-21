@@ -8,50 +8,62 @@ site_author: Hannes Datta, Tobias J. Klein
 
 nav:
 - Home: index.md
-- Project Setup and Workflow Management:
-  - Getting Started: workflow/index.md
-  - Pipelines and Project Components: workflow/pipeline.md
-  - Data Management and Directory Structure: workflow/directories.md
-  - Automating your Pipeline: workflow/automation.md
-  - Documenting Code and Pipeline: workflow/documenting-code.md
-  - Documenting Datasets: workflow/documenting-data.md
-  - Versioning using Git/GitHub: workflow/versioning.md
-  - Collaborating using GitHub: workflow/collaboration.md
-    #- Overview:
-    #- Workflow in make: workflow/automation_workflow.md
-  #- Versioning: workflow/versioning.md
-  #- Data storage: workflow/data.md
-  #- Documentation: workflow/doc.md
-  #- Housekeeping: workflow/housekeeping.md
-  #- Portability: workflow/portability.md
-  - Checklist to Audit your Project: workflow/checklist.md
-- Software Setup:
-  - Installation Guide Overview: setup/index.md
-  #- Terminology: setup/terminology.md
-  #- Command Line Tools: setup/commandLine.md
-  - R: setup/r.md
-  - Stata: setup/stata.md
-  - Git: setup/gitInstall.md
-  - Text Editor: setup/textEditor.md
-#  - Perl: setup/perl.md
-  - Python: setup/python.md
-  - Python Packages: setup/python-packages.md
-  - Build Tools/Make: setup/make.md
-    # - Automation with Waf: setup/waf.md
-    #- Automation with Snakemake: setup/snakemake.md
-  - Webscraping: setup/webscraping_drivers.md
-  - Teamviewer: setup/teamviewer.md
-  - LaTeX: setup/latex.md
-  - Add. Programming: setup/otherProgLang.md
-#  - Pandoc: setup/pandoc.md
-  # - Matlab: setup/matlab.md
-  # - Path Settings: setup/path-setting.md
-#- Manuals:
-#  - How to write good code:
-#  - Style instructions for papers:
-#  - How to collaborate using Git @Hulai
-#  -
-- Project Templates and Tutorials:
+- Building Blocks:
+  - Project Setup and Workflow Management:
+    - Getting Started: workflow/index.md
+    - Pipelines and Project Components: workflow/pipeline.md
+    - Data Management and Directory Structure: workflow/directories.md
+    - Automating your Pipeline: workflow/automation.md
+    - Documenting Code and Pipeline: workflow/documenting-code.md
+    - Documenting Datasets: workflow/documenting-data.md
+    - Versioning using Git/GitHub: workflow/versioning.md
+    - Collaborating using GitHub: workflow/collaboration.md
+      #- Overview:
+      #- Workflow in make: workflow/automation_workflow.md
+    #- Versioning: workflow/versioning.md
+    #- Data storage: workflow/data.md
+    #- Documentation: workflow/doc.md
+    #- Housekeeping: workflow/housekeeping.md
+    #- Portability: workflow/portability.md
+    - Checklist to Audit your Project: workflow/checklist.md
+  - Software Setup:
+    - Installation Guide Overview: setup/index.md
+    #- Terminology: setup/terminology.md
+    #- Command Line Tools: setup/commandLine.md
+    - R: setup/r.md
+    - Stata: setup/stata.md
+    - Git: setup/gitInstall.md
+    - Text Editor: setup/textEditor.md
+  #  - Perl: setup/perl.md
+    - Python: setup/python.md
+    - Python Packages: setup/python-packages.md
+    - Build Tools/Make: setup/make.md
+      # - Automation with Waf: setup/waf.md
+      #- Automation with Snakemake: setup/snakemake.md
+    - Webscraping: setup/webscraping_drivers.md
+    - Teamviewer: setup/teamviewer.md
+    - LaTeX: setup/latex.md
+    - Add. Programming: setup/otherProgLang.md
+  - Tips and Manuals:
+      - Learning R: tips/learn_R.md
+      - Learning Python and Julia: tips/quantecon.md
+      - Writing an Academic Paper: tips/paper.md
+      - Writing Good Code: tips/coding.md
+      - Setting up a file exchange: tips/fileexchanges.md
+      - Links to other initatives: tips/links.md
+  - Creating Educational Videos:
+    - Buying Equipment for Educational Videos: edu-videos/equipment-edu-videos.md
+    - Shooting Educational Videos: edu-videos/shooting-edu-videos.md
+  - Working with Large Files on GitHub: git-lfs.md
+  #  - Pandoc: setup/pandoc.md
+    # - Matlab: setup/matlab.md
+    # - Path Settings: setup/path-setting.md
+  #- Manuals:
+  #  - How to write good code:
+  #  - Style instructions for papers:
+  #  - How to collaborate using Git @Hulai
+  #  -
+- Tutorials:
     - Overview: examples/index.md
     - Tutorial:
         - Getting Started: tutorial/index.md
@@ -63,21 +75,12 @@ nav:
         - More Modifications: tutorial/modifications.md
         - Extending the Analysis: tutorial/analysis.md
         - Finished & Looking Ahead: tutorial/finish.md
-- Tips and Manuals:
-    - Learning R: tips/learn_R.md
-    - Learning Python and Julia: tips/quantecon.md
-    - Writing an Academic Paper: tips/paper.md
-    - Writing Good Code: tips/coding.md
-    - Setting up a file exchange: tips/fileexchanges.md
-    - Links to other initatives: tips/links.md
-- About: about.md
-- Creating Educational Videos:
-  - Buying Equipment for Educational Videos: edu-videos/equipment-edu-videos.md
-  - Shooting Educational Videos: edu-videos/shooting-edu-videos.md
 - Contribute:
   - How to contribute: contribute/how-to-contribute.md
   - Building Blocks Template: contribute/building-block-shell.md
   - Tutorial Template: contribute/tutorial-shell.md
+- About: about.md
+- Disclaimer: disclaimer.md
 #- Acknowledgements: acknowledgement.md
 
 theme:
