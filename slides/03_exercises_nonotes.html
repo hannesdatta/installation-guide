@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Hannes Datta">
+  <meta name="dcterms.date" content="2020-05-29">
+  <title>Running and extending a reproducible workflow</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="./reveal-old/css/reveal.css">
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <link rel="stylesheet" href="./reveal-old/css/theme/robot-lung-tsh.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? './reveal-old/css/print/pdf.css' : './reveal-old/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="./reveal-old/lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide">
+  <h1 class="title">Running and <em>extending</em> a reproducible workflow</h1>
+  <p class="author"><a href="https://hannesdatta.com">Hannes Datta</a></p>
+  <p class="date">May 29, 2020</p>
+</section>
+
+<section><section id="tsh-textmining-workflow" class="title-slide slide level1"><h1>TSH Textmining Workflow</h1></section><section id="overview" class="slide level2">
+<h2>Overview</h2>
+</section><section id="lets-inventorize-how-good-you-are-already" class="slide level2">
+<h2>Let’s inventorize how good you are already…!</h2>
+<p><strong>On a scale from 1 to 10, which grade would you assign yourself in mastering the steps of the TSH textmining workflow?</strong></p>
+</section><section id="recap-installation" class="slide level2">
+<h2>Recap: <a href="http://tilburgsciencehub.com/tutorial/">“Installation”</a></h2>
+<p><strong>What is the main idea of calling programs from cmd/terminal?</strong></p>
+<p><strong>How is this achieved technically?</strong></p>
+<p><strong>Could you have installed R also in &quot;C:\a-weird-path?</strong>&quot;</p>
+<p><strong>What is this installation procedure missing to ensure portability?</strong></p>
+</section><section id="recap-lets-download-the-template" class="slide level2">
+<h2>Recap: <a href="http://tilburgsciencehub.com/tutorial/clone/">“Let’s download the template”</a></h2>
+<p><strong>Did you encounter any issues when you first downloaded and tried to extract the files?</strong></p>
+<p><strong>Who <em>downloaded</em> the workflow as a zip? Who <em>forked and cloned</em> it from GitHub? Motivate your choice!</strong></p>
+</section><section id="recap-running-the-workflow" class="slide level2">
+<h2>Recap: <a href="http://tilburgsciencehub.com/tutorial/run/">“Running the workflow”</a></h2>
+<p><strong>Did your workflow run straight away? If not, how did you fix it?</strong></p>
+<p><strong>Let’s open the makefile. Can you reconstruct what it does (and how?)</strong></p>
+</section><section id="recap-makefile-of-the-data-preparation-pipeline" class="slide level2">
+<h2>Recap: <a href="http://tilburgsciencehub.com/tutorial/pipeline-make/">“Makefile of the data-preparation pipeline”</a></h2>
+<p><strong>What does <code>../</code> stand for in the directory names listed in the <code>makefile</code>?</strong></p>
+<p><strong>How do you decide when to use <code>../</code>, versus merely using the file name?</strong></p>
+</section><section id="recap-dry-run-and-first-modifications" class="slide level2">
+<h2>Recap: <a href="http://tilburgsciencehub.com/tutorial/wipe-rerun/">“Dry run and first modifications”</a></h2>
+<p><strong>What are the benefits of using <code>Spyder</code> over an editor when editing code?</strong></p>
+<p><strong>All modifications, then <code>make</code> vs. modification-make-modification-make?</strong></p>
+<p><strong>When to use <code>make -n</code> instead of <code>make</code>?</strong></p>
+</section><section id="recap-more-modifications" class="slide level2">
+<h2>Recap: <a href="http://tilburgsciencehub.com/tutorial/modifications/">“More modifications”</a></h2>
+<p><strong>What is the main idea of branching?</strong></p>
+<p><strong>How can branching be achieved?</strong></p>
+<p><strong>What problems did you encounter when trying to replace the download URL in <code>download.py</code>. Wanna do this again?</strong></p>
+<p><strong>What’s JSON, anyways?</strong></p>
+</section><section id="recap-modify-analysis" class="slide level2">
+<h2>Recap: <a href="http://tilburgsciencehub.com/tutorial/analysis/">“Modify analysis”</a></h2>
+<p><strong>How does the analysis <em>pull in</em> the final data set?</strong></p>
+<p><strong>Is this a good approach? Why (or why not) + circumstances?</strong></p>
+<p><strong>How would you extend this analysis?</strong></p>
+</section><section id="adv.-exercise-1-portability" class="slide level2">
+<h2>Adv. exercise 1: Portability</h2>
+<p>Let’s make the pipeline stages portable!</p>
+<ul>
+<li>Define a bash script to read in scripts form one folder to another.</li>
+<li>Let’s first <em>draft this by talking about it</em></li>
+<li>You can then code it up.</li>
+</ul>
+</section><section id="adv.-exercise-2-branching-101" class="slide level2">
+<h2>Adv. exercise 2: Branching 101</h2>
+<p>Let’s do a proper Git branch operation.</p>
+<ul>
+<li>Use the <a href="https://education.github.com/git-cheat-sheet-education.pdf">Git cheat sheet</a></li>
+<li>Fork to your GitHub, <code>git clone</code> to your disk</li>
+<li>Create branch: <code>git branch mynewfeature</code>, then checkout <code>git checkout mynewfeature</code></li>
+<li>Swap back and forth</li>
+</ul>
+</section><section id="adv.-exercise-3-branching-and-comparison" class="slide level2">
+<h2>Adv. exercise 3: Branching and comparison</h2>
+<ul>
+<li>Let’s checkout a branch to two different subdirectories</li>
+<li>Run <code>git clone https://..... mainproject</code></li>
+<li>Run <code>git clone https://..... test</code> and <code>git checkout mynewfeature</code></li>
+<li>Run both, then modify one, compare.</li>
+</ul>
+</section></section>
+<section><section id="activities-and-exercises" class="title-slide slide level1"><h1>Activities and exercises</h1></section><section id="overview-1" class="slide level2">
+<h2>Overview</h2>
+<ul>
+<li>Drafting a project pipeline</li>
+<li>Using AWS S3, FTP, Google Drive, Dropbox in your projects</li>
+<li>Using databases</li>
+<li>Versioning (local, on GitHub, implementing in your project, submodules)</li>
+<li>Contributing to open source projects</li>
+<li>Programming tips</li>
+</ul>
+</section><section id="drafting-a-project-pipeline" class="slide level2">
+<h2>Drafting a project pipeline</h2>
+<p><strong>Develop a rough draft of a pipeline for your graduation project</strong></p>
+<ul>
+<li>What’s your final product?</li>
+<li>Break down process in pipeline stages</li>
+<li>Break each stage down in individual steps (inputs/transformation/outputs)</li>
+<li>Which software tools will you use (at each step?)</li>
+</ul>
+</section><section id="drafting-a-project-pipeline-1" class="slide level2">
+<h2>Drafting a project pipeline</h2>
+<p>Discussion points</p>
+<ul>
+<li>Multiple inputs/outputs</li>
+<li>Arguments as inputs</li>
+<li>Expected running time</li>
+<li>Computation and memory requirements</li>
+<li>Parallel execution</li>
+<li>Portable across different OS/software/licenses?</li>
+<li>Automation guru versus manual god?</li>
+</ul>
+</section><section id="using-aws-s3-ftp-google-drive-dropbox-to-host-data" class="slide level2">
+<h2>Using AWS S3, FTP, Google Drive, Dropbox to host data</h2>
+<p><strong>What’s the use of integrating file sharing services in your pipeline?</strong></p>
+<ul>
+<li>Check out <a href="https://github.com/hulaizh/get-data" class="uri">https://github.com/hulaizh/get-data</a></li>
+<li>Do you get one of the scripts in <code>\src</code> to work?</li>
+</ul>
+</section><section id="using-databases-in-reproducible-workflows" class="slide level2">
+<h2>Using databases in reproducible workflows</h2>
+<ul>
+<li><p>Databases have the benefit of “structuring” data for you (even unstructured databases!)</p></li>
+<li><p>Can run locally, remotely</p></li>
+<li><p>Any examples from your work?</p></li>
+<li><p>But… availability guaranteed? What could be a solution?</p></li>
+</ul>
+</section><section id="versioning-with-git-bash-101-local" class="slide level2">
+<h2>Versioning with Git bash 101 (local)</h2>
+<ul>
+<li>Use the <a href="https://education.github.com/git-cheat-sheet-education.pdf">Git cheat sheet</a></li>
+</ul>
+<pre><code>git clone
+git status
+git add
+git commit -m &quot;message&quot;</code></pre>
+<ul>
+<li>Practice on <a href="http://tilburgsciencehub.com/tutorial">TSH tutorial workflow</a></li>
+</ul>
+</section><section id="using-git-and-github" class="slide level2">
+<h2>Using Git and GitHub</h2>
+<ul>
+<li><p>Use the <a href="https://education.github.com/git-cheat-sheet-education.pdf">Git cheat sheet</a></p></li>
+<li>Show
+<ul>
+<li><code>git push -u origin master</code></li>
+<li><code>git pull</code> vs. <code>git fetch</code>/<code>git merge</code></li>
+<li>the GitHub web interface</li>
+</ul></li>
+</ul>
+</section><section id="contributing-to-an-open-source-project-using-github" class="slide level2">
+<h2>Contributing to an open-source project using GitHub</h2>
+<ul>
+<li><p>Use the <a href="https://education.github.com/git-cheat-sheet-education.pdf">Git cheat sheet</a></p></li>
+<li><p>Show <a href="https://github.com/hannesdatta/tilburg-science-hub/blob/tilburg-update/CONTRIBUTING.md">contribution guidelines of Tilburg Science Hub</a></p></li>
+<li><p>Find something you’d like to rewrite, issue a pull request!</p></li>
+</ul>
+</section><section id="implementing-git-in-your-project-1" class="slide level2">
+<h2>Implementing Git in your project (1)</h2>
+<ul>
+<li>pick your own project (e.g., graduation project)</li>
+<li>install git from git-scm.org</li>
+<li>use the <a href="https://education.github.com/git-cheat-sheet-education.pdf">Git cheat sheet</a></li>
+</ul>
+</section><section id="implementing-git-in-your-project-2" class="slide level2">
+<h2>Implementing Git in your project (2)</h2>
+<p>Exclude files from versioning using <code>.gitignore</code></p>
+<p>For example:</p>
+<pre><code>**/temp
+~*
+*.RHistory
+Thumbs.db</code></pre>
+</section><section id="working-with-submodules-in-git" class="slide level2">
+<h2>Working with submodules in Git</h2>
+</section><section id="programming-101" class="slide level2">
+<h2>Programming 101</h2>
+<ul>
+<li>Have clear variable names</li>
+<li>Use loops where possible
+<ul>
+<li>e.g., variable operationalization</li>
+<li>e.g., estimation on different slices of the data</li>
+</ul></li>
+<li>Modularization of functions
+<ul>
+<li>e.g., make your own module for commonly used functions</li>
+<li>e.g., modularize functions itself</li>
+</ul></li>
+<li>Use of assrts
+<ul>
+<li>e.g., <code>stopifnot()</code> in R, <code>assert</code> in Python</li>
+</ul></li>
+</ul>
+</section></section>
+    </div>
+  </div>
+
+  <script src="./reveal-old/lib/js/head.min.js"></script>
+  <script src="./reveal-old/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Push each slide change to the browser history
+        history: true,
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: './reveal-old/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: './reveal-old/plugin/zoom-js/zoom.js', async: true },
+          { src: './reveal-old/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>

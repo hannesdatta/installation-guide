@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Hannes Datta">
+  <meta name="dcterms.date" content="2020-05-29">
+  <title>Efficient Workflows for Data- and Computation-intensive Projects</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="./reveal-old/css/reveal.css">
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <link rel="stylesheet" href="./reveal-old/css/theme/robot-lung-tsh.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? './reveal-old/css/print/pdf.css' : './reveal-old/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="./reveal-old/lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide">
+  <h1 class="title">Efficient Workflows for Data- and Computation-intensive Projects</h1>
+  <p class="author"><a href="https://hannesdatta.com">Hannes Datta</a></p>
+  <p class="date">May 29, 2020</p>
+</section>
+
+<section><section id="lets-get-started" class="title-slide slide level1"><h1>Let’s get started!</h1></section><section id="handouts" class="slide level2">
+<h2>Handouts</h2>
+<p>…are available at the course website at <a href="https://tiu.nu/dep" class="uri">https://tiu.nu/dep</a></p>
+<p>(Dropbox, <code>module 2</code>)</p>
+</section><section id="agenda" class="slide level2">
+<h2>Agenda</h2>
+<p>(before we <em>really</em> start)</p>
+<ul>
+<li>About myself</li>
+<li>Motivation for course</li>
+<li>Learning goals</li>
+<li>Agenda and practical arrangements</li>
+</ul>
+</section></section>
+<section><section id="about-myself" class="title-slide slide level1"><h1>About myself</h1></section><section id="personal-background" class="slide level2">
+<h2>Personal background</h2>
+<ul>
+<li>born and raised in Germany</li>
+<li>moved to NL 11 years ago</li>
+<li>married, 2 kids (2 and 5 years old)</li>
+<li>streaming from ‘de zolderkamer’ in ’s-Hertogenbosch</li>
+<li>geek at heart, love (to play) music</li>
+</ul>
+</section><section id="professional-background" class="slide level2">
+<h2>Professional background</h2>
+<ul>
+<li>PhD, quantitative marketing (Maastricht University)</li>
+<li>Associate professor Tilburg University</li>
+<li>Visiting professor
+<ul>
+<li>Duke University (Sept - Nov 2018)</li>
+<li>University of New South Wales, Sydney (Jan 2020)</li>
+</ul></li>
+</ul>
+</section><section id="key-areas-of-expertise" class="slide level2">
+<h2>Key areas of expertise</h2>
+<ul>
+<li>substantive
+<ul>
+<li>marketing-mix modeling and optimization</li>
+<li>branding</li>
+<li>subscription-based business models</li>
+</ul></li>
+<li>method
+<ul>
+<li>causality in observational data</li>
+<li>data management of structured and unstructured data</li>
+</ul></li>
+</ul>
+</section><section id="teaching-activities" class="slide level2">
+<h2>Teaching activities</h2>
+<ul>
+<li>MSc Marketing Analytics and Management
+<ul>
+<li>Research in Social Media</li>
+<li>Data preparation and workflow management (<em>new</em>)</li>
+<li>Managing large-scale online data collections (scraping and APIs, <em>new</em>)</li>
+</ul></li>
+<li>This class (at various levels; academic, exec)</li>
+</ul>
+</section><section id="current-research-interest" class="slide level2">
+<h2>Current research interest</h2>
+<p><strong>Impact of digitization on consumers, producers</strong></p>
+<ul>
+<li>How did <a href="https://tiu.nu/spotify">online streaming</a> (Spotify, Netflix) change behavior?</li>
+<li>Bunch of follow-ups
+<ul>
+<li>“Who runs Spotify?” The power of content owners versus the platform</li>
+<li><a href="https://research.tilburguniversity.edu/en/publications/streaming-services-and-the-homogenization-of-music-consumption">Music “filter” bubbles</a></li>
+<li>platform incentives &amp; production of music</li>
+</ul></li>
+<li>More: see <a href="https://hannesdatta.com">website</a></li>
+</ul>
+</section></section>
+<section><section id="about-you" class="title-slide slide level1"><h1>About you</h1></section><section id="projects" class="slide level2">
+<h2>Projects</h2>
+<p>Getting to know you through your projects</p>
+<ul>
+<li>Text</li>
+<li>Predictive analytics</li>
+<li>Marketing optimization</li>
+<li>Process mining</li>
+<li>Modeling</li>
+</ul>
+</section></section>
+<section><section id="motivation-for-course" class="title-slide slide level1"><h1>Motivation for course</h1></section><section id="mr.chaos" class="slide level2">
+<h2>Mr. Chaos</h2>
+<ul>
+<li>did my PhD in quant marketing</li>
+<li>coded a lot (data prep, modeling), but didn’t <em>learn how to structure my workflows</em></li>
+<li>created a complete chaos (but still got published); <a href="http://tilburgsciencehub.com/workflow/structure_phd_2013.html">see here</a></li>
+</ul>
+</section><section id="what-was-so-bad-about-it" class="slide level2">
+<h2>What was so bad about it?</h2>
+<ul>
+<li>Replicability
+<ul>
+<li>I couldn’t reproduce results whenever I wanted to</li>
+</ul></li>
+<li>Efficiency
+<ul>
+<li>when making changes to data, I had to go the the beginning, repeating all steps</li>
+<li>a colleague asked me for the data years after; it wasn’t properly documented!</li>
+</ul></li>
+</ul>
+</section><section id="why-should-you-care" class="slide level2">
+<h2>Why should <em>you</em> care?</h2>
+<ul>
+<li>You will change code <em>continuously</em> before project is final!</li>
+<li>Colleagues will look at your code or use it
+<ul>
+<li>to help you</li>
+<li>to continue your work</li>
+</ul></li>
+<li>Small efficiency gains will pay off soon!</li>
+<li>It’s a costly investment in terms of time though</li>
+</ul>
+</section></section>
+<section><section id="this-course" class="title-slide slide level1"><h1>This course</h1></section><section id="course-objective" class="slide level2">
+<h2>Course objective</h2>
+<p>Work <strong>efficiently</strong> on <strong>data- and computation-intensive</strong> projects</p>
+</section><section id="whats-efficient" class="slide level2">
+<h2>What’s efficient?</h2>
+<ul>
+<li class="fragment">not making mistakes…</li>
+<li class="fragment">catching mistakes early</li>
+<li class="fragment">catching mistakes at all!!!</li>
+<li class="fragment">zero setup costs to return to a project</li>
+<li class="fragment">prototype the “final product” soon, refine later</li>
+<li class="fragment">rotating on tasks</li>
+<li class="fragment">sharing/reusing code</li>
+<li class="fragment">having <em>others</em> audit your code</li>
+</ul>
+</section><section id="whats-not-efficient" class="slide level2">
+<h2>What’s <em>not</em> efficient?</h2>
+<ul>
+<li class="fragment">Waiting (e.g., for results, for estimation)</li>
+<li class="fragment">Getting distracted while waiting</li>
+<li class="fragment">Forgetting how things <em>are</em> done</li>
+<li class="fragment">Forgetting how things <em>were</em> done</li>
+<li class="fragment">Losing data</li>
+<li class="fragment">Using code which isn’t properly documented (“don’t know how to use it”)</li>
+<li class="fragment">Becoming frustrated, feeling chaotic</li>
+</ul>
+</section><section id="whats-a-data-intensive-project" class="slide level2">
+<h2>What’s a <em>data</em>-intensive project?</h2>
+<ul>
+<li>Big data: volume, variety, veracity, velocity</li>
+<li>“Where prototyping on small data makes sense”</li>
+</ul>
+<p>→ memory-intensive (RAM)</p>
+</section><section id="whats-a-computation-intensive-project" class="slide level2">
+<h2>What’s a <em>computation</em>-intensive project?</h2>
+<ul>
+<li>Small data, but long computation time</li>
+<li>“Potential for running things in parallel”</li>
+</ul>
+<p>→ CPU-intensive</p>
+</section><section id="what-about-your-projects" class="slide level2">
+<h2>What about <em>your</em> projects?</h2>
+<ul>
+<li><p>What do <em>you</em> feel has been <strong>efficient</strong> or <strong>unefficient</strong> in the way you’ve run your projects?</p></li>
+<li><p>To what extent do your projects fit the criteria of <strong>data- and computation-intensiveness</strong>?</p></li>
+</ul>
+<p>Let’s discuss by <em>type of graduation project</em></p>
+</section><section id="how-to-achieve-the-course-objectives" class="slide level2">
+<h2>How to achieve the course objectives</h2>
+<ul>
+<li>Boost your own efficiency
+<ul>
+<li>…by making your work reproducible &amp; transparent</li>
+</ul></li>
+<li>Boosting the efficiency of others
+<ul>
+<li>…by being able to share your work and collaborate on other projects</li>
+</ul></li>
+<li>We require a <a href="http://tilburgsciencehub.com/workflow">conceptual framework</a></li>
+<li>Discuss own work, and how to implement suggestions</li>
+</ul>
+</section><section id="direct-link-to-crisp-dm" class="slide level2">
+<h2>Direct link to CRISP-DM</h2>
+<p>…across many stages!</p>
+<p><a title="Kenneth Jensen / CC BY-SA (https://creativecommons.org/licenses/by-sa/3.0)" href="https://commons.wikimedia.org/wiki/File:CRISP-DM_Process_Diagram.png"><img width="412" alt="CRISP-DM Process Diagram" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/CRISP-DM_Process_Diagram.png/512px-CRISP-DM_Process_Diagram.png"></a></p>
+</section><section id="disclaimer" class="slide level2">
+<h2>Disclaimer</h2>
+<ul>
+<li class="fragment">I planned to do this in English, but…</li>
+<li class="fragment">I assume you have viewed the <a href="https://hannesdatta.github.io/course-jads2020/">course page at tiu.nu/dep</a></li>
+<li class="fragment">If I’m going too fast (and I will), slow me down!</li>
+<li class="fragment">I may deviate from the announced timing</li>
+<li class="fragment">I’m a marketer, <em>not</em> data scientist, <em>not</em> IT</li>
+<li class="fragment">I refer to <a href="http://tilburgsciencehub.com">Tilburg Science Hub</a></li>
+<li class="fragment">I’m using this slide deck for the first time</li>
+<li class="fragment"><s>traditional lecture</s> interactive live stream</li>
+<li class="fragment">I’m not the most efficient person to talk to… ;)</li>
+</ul>
+</section><section id="success-factors" class="slide level2">
+<h2>Success factors</h2>
+<p>Please tell me <strong>what would make this course a success</strong> for you</p>
+</section></section>
+<section><section id="agenda-practical-arrangements" class="title-slide slide level1"><h1>Agenda &amp; practical arrangements</h1></section><section id="agenda-1" class="slide level2">
+<h2>Agenda (1)</h2>
+<ul>
+<li>13:15 - 14:15 (now): Introduction
+<ul>
+<li>Course setup (done that)</li>
+<li>Preview of efficient workflows</li>
+<li>Key building blocks
+<ul>
+<li>Pipelines &amp; components</li>
+<li>Data management &amp; directory structure</li>
+<li>Automation</li>
+</ul></li>
+</ul></li>
+</ul>
+</section><section id="agenda-2" class="slide level2">
+<h2>Agenda (2)</h2>
+<ul>
+<li>14:30 - 15:30: Running and <em>extending</em> a reproducible workflow
+<ul>
+<li>Putting things in practice
+<ul>
+<li><a href="http://tilburgsciencehub.com/tutorial">TSH workflow tutorial</a> + Q&amp;A</li>
+<li>Activity: Drafting your project pipeline</li>
+</ul></li>
+<li>Key building blocks (<em>’cntd</em>)
+<ul>
+<li>Documentation</li>
+<li>Versioning</li>
+<li>Collaboration</li>
+</ul></li>
+</ul></li>
+</ul>
+</section><section id="agenda-3" class="slide level2">
+<h2>Agenda (3)</h2>
+<ul>
+<li>15:45 - 16:45: Advanced topics &amp; implementation
+<ul>
+<li>Inventorizing your needs + picking activities/extra content</li>
+<li>Implementation plan</li>
+<li>Wrap-up</li>
+</ul></li>
+</ul>
+</section><section id="practical-arrangements" class="slide level2">
+<h2>Practical arrangements</h2>
+<ul>
+<li>Installation fine?</li>
+<li>Could run the workflow?</li>
+<li>All digital, interactive
+<ul>
+<li>make use of public chat (tell me if I don’t see it! who can take that role?)</li>
+<li>maybe share screen (install <a href="http://tilburgsciencehub.com/setup/teamviewer">TeamViewer</a>)</li>
+<li>if you have, use two screens (one to program, one to view slides/others)</li>
+</ul></li>
+</ul>
+</section><section id="any-questions" class="slide level2">
+<h2>Any questions?</h2>
+</section></section>
+<section><section id="preview-of-efficient-workflows" class="title-slide slide level1"><h1>Preview of efficient workflows</h1></section><section id="reproducibility-transparency" class="slide level2">
+<h2>Reproducibility &amp; transparency</h2>
+<ul>
+<li><p>Running <a href="http://tilburgsciencehub.com/tutorial">text mining tutorial</a> on TSH</p></li>
+<li>Why is it useful?
+<ul>
+<li>Runs with one command (<code>make</code>)</li>
+<li>Template to kickstart your projects</li>
+<li>Endless possibilities to extend</li>
+</ul></li>
+</ul>
+<p><strong>What “standard workflow” templates would be useful in your area?</strong></p>
+</section><section id="a-bird-eyes-view" class="slide level2">
+<h2>A bird eye’s view</h2>
+<ul>
+<li>What is it about?
+<ul>
+<li>Build entire pipeline first</li>
+<li>Then refine steps</li>
+</ul></li>
+<li>Good for
+<ul>
+<li>quick prototype</li>
+<li>swapping/upgrading modules</li>
+<li>focus on the “big” picture</li>
+</ul></li>
+</ul>
+</section><section id="portability-across-computers-operating-systems" class="slide level2">
+<h2>Portability across computers, operating systems</h2>
+<ul>
+<li>What is it about?
+<ul>
+<li>Prototype on Mac and Windows</li>
+<li>Move to Linux Cloud</li>
+</ul></li>
+<li>Good for
+<ul>
+<li>performance issues</li>
+<li>collaboration</li>
+</ul></li>
+</ul>
+</section><section id="branching-out" class="slide level2">
+<h2>Branching out</h2>
+<ul>
+<li>What is it about?
+<ul>
+<li>Take a “copy” of your project</li>
+<li>Do changes there, test those without breaking the main project</li>
+</ul></li>
+<li>Good for
+<ul>
+<li>Testing</li>
+<li>Robustness checks</li>
+<li>Going back in time</li>
+</ul></li>
+</ul>
+</section><section id="time-capsule" class="slide level2">
+<h2>Time capsule</h2>
+<ul>
+<li>What is it about?
+<ul>
+<li>Use version history on Git to view code (from the past)</li>
+</ul></li>
+<li>Good for
+<ul>
+<li>Because you <em>can</em>, you delete code and keep your project clean</li>
+<li>Finding code that you want to use again</li>
+<li>Search code <em>across</em> projects</li>
+</ul></li>
+</ul>
+</section><section id="software-agility" class="slide level2">
+<h2>Software agility</h2>
+<ul>
+<li>What is it about?
+<ul>
+<li>Use automation to connect different programs (e.g., R, Python, …)</li>
+<li>Use outputs of one as inputs of another</li>
+</ul></li>
+<li>Good for
+<ul>
+<li>Use a program what it’s best for (e.g., R for data preparation, Python for ML)</li>
+<li>Extreme flexibility</li>
+</ul></li>
+</ul>
+</section></section>
+<section><section id="wrap-up" class="title-slide slide level1"><h1>Wrap-up</h1></section><section id="summary" class="slide level2">
+<h2>Summary</h2>
+<p>What are <strong>your</strong> takeaways?</p>
+</section><section id="met-the-objective" class="slide level2">
+<h2>Met the objective?</h2>
+<p>Work <strong>efficiently</strong> on <strong>data- and computation-intensive</strong> projects</p>
+</section><section id="your-feedback" class="slide level2">
+<h2>Your feedback</h2>
+<ul>
+<li>About this course
+<ul>
+<li>About me</li>
+<li>The format of this course</li>
+<li>Communication</li>
+</ul></li>
+<li>About Tilburg Science Hub
+<ul>
+<li>About the text mining tutorial</li>
+<li>About the installation instructions</li>
+<li>About the overall workflows</li>
+</ul></li>
+<li>…anything else</li>
+</ul>
+</section><section id="contact" class="slide level2">
+<h2>Contact</h2>
+<p>Hannes Datta</p>
+<p>https://hannesdatta.com</p>
+</section></section>
+    </div>
+  </div>
+
+  <script src="./reveal-old/lib/js/head.min.js"></script>
+  <script src="./reveal-old/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Push each slide change to the browser history
+        history: true,
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: './reveal-old/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: './reveal-old/plugin/zoom-js/zoom.js', async: true },
+          { src: './reveal-old/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>

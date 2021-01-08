@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Hannes Datta">
+  <meta name="dcterms.date" content="2020-05-29">
+  <title>Key building blocks of efficient workflows</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="./reveal-old/css/reveal.css">
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <link rel="stylesheet" href="./reveal-old/css/theme/robot-lung-tsh.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? './reveal-old/css/print/pdf.css' : './reveal-old/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="./reveal-old/lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="reveal">
+     <div class="slides">
+   <div class="line top"></div> 
+   <div class="line bottom"></div> 
+    <div class="line left"></div> 
+    <div class="line right"></div> 
+     
+
+<section id="title-slide">
+  <h1 class="title">Key building blocks of efficient workflows</h1>
+  <p class="author"><a href="https://hannesdatta.com">Hannes Datta</a></p>
+  <p class="date">May 29, 2020</p>
+</section>
+
+<section><section id="overview---part-1" class="title-slide slide level1"><h1>Overview - Part 1</h1></section><section id="goals-of-this-module" class="slide level2">
+<h2>Goals of this module</h2>
+<p><em>Understand the <a href="http://tilburgsciencehub.com/workflow">key building blocks of efficient workflows</a></em></p>
+<ul>
+<li>Think of your project as a pipeline</li>
+<li>Learn about the key components of a pipeline</li>
+<li>Discuss data management and directory structures</li>
+<li>Automate your pipeline</li>
+</ul>
+<aside class="notes">
+<p>could be a little dry</p>
+<p>Gradual implementation possible</p>
+</aside>
+</section></section>
+<section><section id="pipelines" class="title-slide slide level1"><h1>Pipelines</h1></section><section id="definition" class="slide level2">
+<h2>Definition</h2>
+<p><em>pipeline</em> {n.}: refers to the (usually automized) <strong>steps necessary to build a project</strong>; <em>workflow</em> used interchangeably</p>
+<ul>
+<li class="fragment">Examples: steps necessary to prepare data, run model, produce tables and figures</li>
+</ul>
+<aside class="notes">
+<ul>
+<li><strong>What steps does your project consist of?</strong></li>
+<li><p><strong>Which steps did you already automize?</strong></p></li>
+<li><p>STAGES are the broader steps</p></li>
+</ul>
+</aside>
+</section><section id="example-academic-paper" class="slide level2">
+<h2>Example: Academic paper</h2>
+<pre><code>- Stage 1: Prepare dataset for analysis
+    - Step 1a: download raw data
+    - Step 1b: clean data
+    - Step 1c: aggregate data
+- Stage 2: Run model on a dataset
+    - Step 2a: various variable configurations
+    - Step 2b: select best fitting model
+- Stage 3: Produce tables and figures for the paper
+    - Step 3a: load result of best-fitting model
+    - Step 3b: produce output table</code></pre>
+</section><section id="drafting-a-pipeline" class="slide level2">
+<h2>Drafting a pipeline</h2>
+<figure>
+<img data-src="./images/make_flowchart.png" alt="Directed acyclic graph (DAG)" /><figcaption>Directed acyclic graph (DAG)</figcaption>
+</figure>
+<div class="fragment">
+<ul>
+<li>white boxes (inputs or outputs; concurrently!)</li>
+<li>red boxes (transformation by rules)</li>
+</ul>
+</div>
+</section><section id="benefits-of-pipelines" class="slide level2">
+<h2>Benefits of pipelines</h2>
+<ul>
+<li>write clearer source code: smaller code chunks</li>
+<li>obtain results faster: automation (redo); change inputs &amp; check outputs</li>
+<li>increase transparency and collaboration: work in different parts of pipeline</li>
+<li>software stack: full flexibility</li>
+</ul>
+</section><section id="discussion" class="slide level2">
+<h2>Discussion</h2>
+<p><strong>What are common pipeline stages in your domain?</strong></p>
+<aside class="notes">
+<p>as an academic, it’s data-prep, model, writing</p>
+<p>(What stages would you choose to change, remove, add?)</p>
+<p>Think of: - what steps do I do, what steps do others do? - other deployment stages: e.g., dashboards, etc.</p>
+</aside>
+</section></section>
+<section><section id="components-of-a-pipeline" class="title-slide slide level1"><h1>Components of a pipeline</h1></section><section id="definition-1" class="slide level2">
+<h2>Definition</h2>
+<p><em>pipeline components</em> {n}: refer to a project’s building blocks, consisting of source code, data, generated files, and notes.</p>
+</section><section id="source-code" class="slide level2">
+<h2>(1) Source code</h2>
+<p>inputs [data, arguments] → transformation → output [datasets, log files, images]</p>
+<div class="fragment">
+<ul>
+<li>Examples:
+<ul>
+<li>load data from web, save locally as CSV</li>
+<li>clustering: argument (set <em>k</em> for k-means); load matrix of tag words, cluster with <em>k</em>, save IDs &amp; cluster IDs to csv</li>
+<li>load results, compute fit statistics, output to .txt file</li>
+<li>…</li>
+</ul></li>
+</ul>
+<aside class="notes">
+<ul>
+<li>responsible to <strong>transform inputs into outputs</strong></li>
+</ul>
+</aside>
+</div>
+</section><section id="raw-data" class="slide level2">
+<h2>(2) Raw data</h2>
+<ul>
+<li>Data <em>stored remotely</em>
+<ul>
+<li>File-based systems (e.g., S3, FTP, Dropbox, Drive)</li>
+<li>Databases (e.g., MongoDB, MySQL)</li>
+<li>Get’em all: use our get-data tool!</li>
+</ul></li>
+<li><p>Those needed are downloaded <em>locally</em> (!)</p></li>
+<li><p><a href="http://tilburgsciencehub.com/workflow/documenting-data">Documented with <code>readme.txt</code></a>!</p></li>
+</ul>
+<aside class="notes">
+<p>how do YOU store data?</p>
+</aside>
+</section><section id="generated-files" class="slide level2">
+<h2>(3) Generated files</h2>
+<ul>
+<li>These are the <em>outputs</em> of your source code.</li>
+<li>Think about cleaned data sets, results of analysis, etc.</li>
+<li>If <em>final</em> –&gt; “output”</li>
+<li>If <em>temporary</em> –&gt; “temp”</li>
+<li>If used for auditing –&gt; “audit”</li>
+</ul>
+<aside class="notes">
+<p>do you keep them separate? how?</p>
+</aside>
+</section><section id="notes" class="slide level2">
+<h2>(4) Notes</h2>
+<ul>
+<li>Documentation, literature, PDFs, …</li>
+<li>Keep in separate folder, with potentially subfolders</li>
+</ul>
+<aside class="notes">
+<p>where do YOU store them?</p>
+</aside>
+</section><section id="conceptual-framework" class="slide level2">
+<h2>Conceptual framework</h2>
+<p><img data-src="images/workflow.png" width="800" /></p>
+<aside class="notes">
+<ul>
+<li>pipeline = logical steps in building project</li>
+<li><p>components = nuclear units</p></li>
+<li>why?
+<ul>
+<li>full portability across colleagues, computers</li>
+<li>reproducibility and transparency (nothing manually edited)</li>
+</ul></li>
+</ul>
+</aside>
+</section><section id="discussion-1" class="slide level2">
+<h2>Discussion</h2>
+<p><strong>What are the benefits (or drawbacks) of keeping project components separate?</strong></p>
+<div class="fragment">
+<p><strong>Do you keep them separate, or not (and why)?</strong></p>
+<aside class="notes">
+<p>benefits: each has its own “data management” policies attached to it e.g., code needs to be versioned, raw data does not</p>
+</aside>
+</div>
+</section></section>
+<section><section id="data-management-and-directory-structure" class="title-slide slide level1"><h1>Data Management and Directory Structure</h1></section><section id="guiding-principles" class="slide level2">
+<h2>Guiding principles</h2>
+<ul>
+<li>Others should understand pipeline, merely by <em>looking at file/directory structure</em></li>
+<li>Each step in pipeline is <em>self-contained</em> (“portability”)</li>
+<li>Project is <em>versioned &amp; backed-up</em> (more later)</li>
+</ul>
+</section><section id="lets-share-your-practices" class="slide level2">
+<h2>Let’s share your practices</h2>
+<ul>
+<li>How <strong>do you</strong> keep files/directories tidy?</li>
+<li>How <strong>do you</strong> ensure portability?</li>
+<li>How <strong>do you</strong> version &amp; back-up your project?</li>
+</ul>
+<aside class="notes">
+<ul>
+<li>Be prepared to show the directory of a recent project you’re working on – be able to explain that structure (you don’t need to revise the structure before class!)</li>
+</ul>
+<p>Anybody wants to show?</p>
+</aside>
+</section><section id="how-to-store-raw-data" class="slide level2">
+<h2>How to store raw data</h2>
+<ul>
+<li>Suggestions are <a href="http://tilburgsciencehub.com/workflow/directories/">here</a>
+<ul>
+<li>CSV is more stable than XLSX, SAV, …</li>
+<li>Databases will shut down, so take copies of your data</li>
+</ul></li>
+<li><p>Transparent directory structure with <a href="http://tilburgsciencehub.com/workflow/documenting-data"><code>readme.txt</code></a> in each folder</p>
+<pre><code>\data\website_A\...
+\data\company_B\...
+\data\data_provider_C\2019-11-04\...
+\data\data_provider_C\2020-03-01\...</code></pre></li>
+</ul>
+</section><section id="project-directory-structure-1" class="slide level2">
+<h2>Project directory structure (1)</h2>
+<ul>
+<li>Three main folders: <code>src</code>, <code>gen</code>, and <code>data</code></li>
+<li>Subfolders represent pipeline stages (e.g., <code>data-prep</code>, <code>analysis</code>, <code>paper</code>)</li>
+</ul>
+<pre><code>\src\data-prep       &lt;- SOURCE CODE
+\src\analysis
+\src\paper
+
+\gen\data-prep\      &lt;- GENERATED FILES
+\gen\analysis\
+\gen\paper\
+
+\data\website_A\...  &lt;- RAW DATA
+\data\company_B\...</code></pre>
+</section><section id="project-directory-structure-2" class="slide level2">
+<h2>Project directory structure (2)</h2>
+<ul>
+<li>Keep generated files separate: <code>input</code>, <code>output</code>, <code>temp</code>, <code>audit</code> <a href="http://tilburgsciencehub.com/workflow/directories/#summary">notes</a>)</li>
+</ul>
+<pre><code>\src\data-prep       &lt;- SOURCE CODE
+\src\analysis
+\src\paper
+\gen\data-prep\input &lt;- GENERATED FILES
+\gen\data-prep\output
+\gen\data-prep\temp
+\gen\data-prep\audit
+\gen\analysis\...
+\gen\paper\...
+\data\website_A\...  &lt;- RAW DATA
+\data\company_B\...</code></pre>
+</section><section id="exploration" class="slide level2">
+<h2>Exploration</h2>
+<ul>
+<li>Let’s explore a directory structure in practice…</li>
+<li>E.g., view <a href="http://tilburgsciencehub.com/workflow/structure_spotify_2018.html">structure of my Spotify paper</a></li>
+</ul>
+<p><strong>What’s different from what I just told you?</strong></p>
+<aside class="notes">
+<ol type="1">
+<li>Describe the directory structure – where did I store what?</li>
+<li>What’s the use of the main directories in the project? (raw, derived, analysis) – why do I do it that way?</li>
+<li>What’s that server directory doing?!</li>
+</ol>
+<p>“project” centric - “wipeable”</p>
+<p>“submodule centric” - self-contained, highly <em>portable</em></p>
+</aside>
+</section><section id="enabling-portability-1" class="slide level2">
+<h2>Enabling portability (1)</h2>
+<ul>
+<li>Output of one pipeline stage (e.g., <code>\gen\data-prep\output</code>) can be input to another pipeline stage (e.g., <code>\gen\analysis\input</code>)</li>
+</ul>
+</section><section id="enabling-portability-2" class="slide level2">
+<h2>Enabling portability (2)</h2>
+<ul>
+<li>Potential solution <em>violating portability</em>
+<ul>
+<li>Code in <code>\src\analysis</code> reads directly from <code>\gen\data-prep\output</code></li>
+<li>Fine if you work on your own</li>
+</ul></li>
+</ul>
+</section><section id="enabling-portability-3" class="slide level2">
+<h2>Enabling portability (3)</h2>
+<ul>
+<li>Better solution <em>ensuring portability</em>
+<ul>
+<li>Code in <code>\src\data-prep</code> moves <code>\gen\data-prep\output</code> to file exchange (e.g., S3, local server)</li>
+<li>Code in <code>\src\analysis</code> downloads data from file exchange, puts it into <code>\gen\analysis\input</code></li>
+<li>Much better when working with others</li>
+</ul></li>
+</ul>
+</section><section id="using-a-directory-template" class="slide level2">
+<h2>Using a directory template</h2>
+<p>Please download the <a href="http://tilburgsciencehub.com/workflow/dir_structure.zip">directory template</a></p>
+<p><strong>What changes would you make to <em>use</em> this template for your own work?</strong></p>
+</section></section>
+<section><section id="automation" class="title-slide slide level1"><h1>Automation</h1></section><section id="automate-your-workflow" class="slide level2">
+<h2>Automate your workflow</h2>
+<ul>
+<li>Build tools introduce “recipes” of how to make stuff
+<ul>
+<li><em>target</em> <strong>what</strong> needs to be built (e.g., a file)</li>
+<li><em>source(s)</em> what is <strong>required</strong> to execute the build?</li>
+<li><em>execution</em> how is the build to be <strong>executed/run</strong>?</li>
+</ul></li>
+</ul>
+</section><section id="use-cases" class="slide level2">
+<h2>Use cases</h2>
+<ul>
+<li>Build only what <em>needs</em> to be built</li>
+<li>Quickly move code to another computer (e.g., the cloud)</li>
+<li>“Loop” over different model specifications</li>
+<li>Nightly builds</li>
+</ul>
+<p>::: notes</p>
+<p>related to the practical example given earlier :::</p>
+</section><section id="example-recipes" class="slide level2">
+<h2>Example recipes</h2>
+<p>Let’s generate some example recipes by writing <strong>pseudo code</strong>…</p>
+<pre><code>target: source(s)
+    execution command</code></pre>
+<aside class="notes">
+<p>more examples: (a) tell me what will be built &amp; the file names (b) what are the dependencies (c) how to run it, which software?</p>
+</aside>
+</section><section id="make-is-one-build-tool" class="slide level2">
+<h2>Make is <em>one</em> build tool</h2>
+<ul>
+<li>Installed on Mac, Linux; <a href="http://tilburgsciencehub.com/setup/make">installable on Windows</a></li>
+<li>Documentation <a href="http://tilburgsciencehub.com/workflow/automation/">here</a>
+<ul>
+<li><code>make</code> runs entire workflow</li>
+<li><code>make -n</code> does a dry-run</li>
+</ul></li>
+</ul>
+<aside class="notes">
+<p>preview the TSH tutorial here</p>
+<p>could also show another data set I have</p>
+</aside>
+</section><section id="learning-about-relative-paths" class="slide level2">
+<h2>Learning about <em>relative</em> paths</h2>
+<ul>
+<li>You all know how <em>absolute</em> paths look like: <code>c:\projects\jads\data\myfile.csv</code></li>
+<li>But… what are <em>relative</em> paths?
+<ul>
+<li>Have reference directory; typically where file is in</li>
+<li>Exercise
+<ul>
+<li>Open terminal</li>
+<li>Navigate directory with <code>cd</code> and <code>dir</code> (Win) or <code>ls</code> (Mac)</li>
+</ul></li>
+</ul></li>
+</ul>
+</section><section id="what-to-automate" class="slide level2">
+<h2>What to automate?</h2>
+<ul>
+<li>Automate everything that <em>can</em> be automated</li>
+</ul>
+<aside class="notes">
+<p>but… limits to automation!!!</p>
+<p>may cost a lot of time</p>
+</aside>
+</section><section id="activity" class="slide level2">
+<h2>Activity</h2>
+<p><strong>Let’s learn from some makefiles!</strong></p>
+<ul>
+<li>Check out some <code>makefiles</code>
+<ul>
+<li><a href="https://kbroman.org/minimal_make#more-complicated-examples">Researcher</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Make_(software)#Example_makefiles">Software devel</a></li>
+</ul></li>
+<li>Can you understand what’s being done?</li>
+<li>How are they structured? Do you recognize any “sections”?</li>
+<li>What’s the same, what’s different from what you have seen in this tutorial so far?</li>
+</ul>
+<aside class="notes">
+<ul>
+<li>parameters so that you can loop</li>
+<li>variables so you don’t have to repeat commands</li>
+<li>use of cleaning rules</li>
+</ul>
+</aside>
+</section></section>
+<section><section id="overview---part-2" class="title-slide slide level1"><h1>Overview - Part 2</h1></section><section id="goals-of-this-module-1" class="slide level2">
+<h2>Goals of this module</h2>
+<p><em>Understand the <a href="http://tilburgsciencehub.com/workflow">key building blocks of efficient workflows</a></em></p>
+<ul>
+<li>Learn how to document your workflow and (raw) data</li>
+<li>Discover how versioning can change your life</li>
+<li>Collaborate on open source projects via GitHub</li>
+<li>Housekeeping that sparks joy!</li>
+</ul>
+</section></section>
+<section><section id="documentation" class="title-slide slide level1"><h1>Documentation</h1></section><section id="documenting-code-and-pipeline" class="slide level2">
+<h2>Documenting code and pipeline</h2>
+<ul>
+<li>include one for main project (<a href="http://tilburgsciencehub.com/workflow/documenting-code/">template here</a>)</li>
+<li>include one for each stage of your pipeline
+<ul>
+<li><code>makefile</code> is a good substitute for that documentation</li>
+</ul></li>
+</ul>
+</section><section id="documenting-raw-data" class="slide level2">
+<h2>Documenting (raw) data</h2>
+<ul>
+<li>Import for newly generated raw data <em>and</em> any generated output data</li>
+<li>You can make use of <a href="http://tilburgsciencehub.com/workflow/documenting-data/">this template</a></li>
+</ul>
+</section><section id="activity-1" class="slide level2">
+<h2>Activity</h2>
+<ul>
+<li>Think about a data set <strong>you have generated</strong>
+<ul>
+<li>Which sections of <a href="http://tilburgsciencehub.com/workflow/documenting-data">the template</a> would you find easy to fill in, which ones hard?</li>
+<li>Do you find all sections equally important?</li>
+</ul></li>
+</ul>
+<div class="fragment">
+<ul>
+<li>Think about a data set you are using (i.e., <strong>somebody else made it</strong>)
+<ul>
+<li>Which aspects in <a href="http://tilburgsciencehub.com/workflow/documenting-data">the template</a> would you have liked to know (but don’t, because nobody documented it)?</li>
+</ul></li>
+</ul>
+<p><strong>Let’s share your learnings!</strong></p>
+<aside class="notes">
+<ul>
+<li>which sections are there?</li>
+<li>what would you write?</li>
+</ul>
+</aside>
+</div>
+</section></section>
+<section><section id="versioning-on-github" class="title-slide slide level1"><h1>Versioning on GitHub</h1></section><section id="versioning-the-old-way" class="slide level2">
+<h2>Versioning the old way</h2>
+<ul>
+<li>Use dates in file names, initials for authors</li>
+</ul>
+<pre><code>cleandata_022113.do
+cleandata_022613.do
+regressions.log
+cleandata_022113a.do
+cleandata_022613_jms.do
+regressions_022413.do
+regressions_022713_mg.do
+regressions_022413.log</code></pre>
+<aside class="notes">
+<ul>
+<li>Good
+<ul>
+<li>Facilitates comparison</li>
+<li>Facilitates undoing, rolling back</li>
+</ul></li>
+<li>Bad
+<ul>
+<li>Which log file comes from which regression?</li>
+<li>Which version of <code>cleandata</code> was used to make data for <code>regressions</code>?</li>
+<li>No software firm does it like that!</li>
+</ul></li>
+</ul>
+</aside>
+</section><section id="versioning-the-new-way" class="slide level2">
+<h2>Versioning the new way</h2>
+<ul>
+<li>Make use of software tools like Git(Hub)
+<ul>
+<li>Git is locally installed, open-source</li>
+<li>GitHub is Git in the cloud; many other providers available</li>
+</ul></li>
+<li>Git saves <em>changes</em> rather than snapshots</li>
+<li>Git allows you to work <em>in parallel</em>, with others</li>
+</ul>
+<aside class="notes">
+<ul>
+<li>show git in an example directory, and how it incrementally saves stuff</li>
+<li>show .gitignore</li>
+</ul>
+</aside>
+</section><section id="git-workcycle-1" class="slide level2">
+<h2>Git workcycle (1)</h2>
+<figure>
+<img data-src="./images/git_workflow.png" alt="Git workcycle" /><figcaption>Git workcycle</figcaption>
+</figure>
+</section><section id="git-workcycle-2" class="slide level2">
+<h2>Git workcycle (2)</h2>
+<ul>
+<li>Several times a day
+<ul>
+<li><code>git status</code>: What has changed?</li>
+<li><code>git add</code>: staging</li>
+<li><code>git commit -m &quot;message&quot;</code>: commit (“save”) + note to your future self</li>
+</ul></li>
+<li>Sync at the end of the day
+<ul>
+<li><code>git push</code>: push to server (e.g., GitHub)</li>
+<li><code>git pull</code>: get updates from server</li>
+</ul></li>
+<li><a href="http://tilburgsciencehub.com/workflow/versioning">More on TSH</a></li>
+<li><a href="https://education.github.com/git-cheat-sheet-education.pdf">Wonderful cheatsheet</a></li>
+</ul>
+</section></section>
+<section><section id="collaboration-and-project-management" class="title-slide slide level1"><h1>Collaboration and project management</h1></section><section id="collaboration-on-github" class="slide level2">
+<h2>Collaboration on GitHub</h2>
+<ul>
+<li>Find a project to collaborate on</li>
+<li>Fork repository</li>
+<li>Build the project</li>
+<li>Do your work!
+<ul>
+<li>Create branch for each feature</li>
+<li>Perform Git workcycles</li>
+</ul></li>
+<li>Done? Create pull request
+<ul>
+<li>Owner of main repository will review, then integrate changes</li>
+</ul></li>
+</ul>
+</section><section id="project-management-on-github" class="slide level2">
+<h2>Project management on GitHub</h2>
+<ul>
+<li>Issues</li>
+<li>Project board</li>
+<li>Milestones</li>
+</ul>
+</section></section>
+<section><section id="implementation-and-housekeeping" class="title-slide slide level1"><h1>Implementation and Housekeeping</h1></section><section id="implementation" class="slide level2">
+<h2>Implementation</h2>
+<ul>
+<li>Start gradually
+<ul>
+<li>e.g., have a directory structure first + move files; then start to automate <strong>step by step</strong></li>
+</ul></li>
+<li>Use projects or templates you can learn from (e.g., on <a href="http://tilburgsciencehub.com">Tilburg Science Hub</a>)</li>
+</ul>
+</section><section id="tidying-up" class="slide level2">
+<h2>Tidying up</h2>
+<ul>
+<li>Because we versioned, we can <em>delete what can be deleted</em></li>
+<li>Testing for portability
+<ul>
+<li>locally: restart PC, rerun</li>
+<li>locally: wipe <code>gen</code>, rerun</li>
+<li>other computer: run <code>make</code></li>
+<li>other computer, different OS: run <code>make</code></li>
+<li>fix, fix, fix</li>
+</ul></li>
+</ul>
+<aside class="notes">
+<pre><code>On own computer
+Wipe all temp and output files
+Restart your PC
+Run makefile
+
+Does it reproduce the results?
+
+On other computer (I use a virtual PC in the cloud)
+Install software as instructed in readme
+Run makefile
+
+Does it reproduce the results?</code></pre>
+</aside>
+</section><section id="checklist" class="slide level2">
+<h2>Checklist</h2>
+<p>We’ve compiled a <a href="http://tilburgsciencehub.com/workflow/checklist/">housekeeping checklist here</a></p>
+</section><section id="drafting-an-implementation-plan" class="slide level2">
+<h2>Drafting an implementation plan</h2>
+<p><strong>Which steps are important?</strong></p>
+<p><strong>How would you proceed?</strong></p>
+</section><section id="implementation-suggestions" class="slide level2">
+<h2>Implementation suggestions</h2>
+<ol type="1">
+<li>Version stuff, but exclude file types that need not to be versioned!</li>
+<li><em>Draft</em> pipeline: which <em>stages</em> do you need?</li>
+<li>Move files in proper directories (<a href="http://tilburgsciencehub.com/workflow/dir_structure.zip">use directory template</a>)</li>
+<li>Build pipeline (input, outputs for each file) + test manually</li>
+<li>Make <code>make</code> work on what you have</li>
+</ol>
+<aside class="notes">
+<p>can do it for one project if you like…</p>
+</aside>
+</section></section>
+    </div>
+  </div>
+
+  <script src="./reveal-old/lib/js/head.min.js"></script>
+  <script src="./reveal-old/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Push each slide change to the browser history
+        history: true,
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: './reveal-old/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: './reveal-old/plugin/zoom-js/zoom.js', async: true },
+          { src: './reveal-old/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>
