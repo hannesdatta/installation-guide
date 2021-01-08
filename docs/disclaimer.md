@@ -5,10 +5,10 @@
 Should this be the case, we would appreciate your critical remarks at [tsh@tilburguniversity.edu](mailto:tsh@tilburguniversity.edu).
 Tilburg Science Hub is not responsible for any information supplied on its website or for the consequences of the use thereof. No rights can be derived on the basis of the data on Tilburg Science Hub website.
 
-# Privacy Statement Tilburg Science Hub
+# Privacy Statement 
 Tilburg Science Hub takes the protection of all personal information which it receives via its website extremely seriously. Read more on the [Tilburg University Privacy Statement website](https://www.tilburguniversity.edu/disclaimer/privacy-statement).
 
-#Cookie disclaimer Tilburg Science Hub
+# Cookie disclaimer 
 The website of the Tilburg Science Hub uses cookies, which are small files that are stored locally on your computer. Since the Dutch telecom law came into force on 1 June 2012, all websites hosted in The Netherlands are legally obliged to inform users about the nature of the delivered cookies.
 
 ## Google Analytics & Tag Manager
